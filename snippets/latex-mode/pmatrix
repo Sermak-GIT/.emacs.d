@@ -1,0 +1,9 @@
+# -*- mode: latex -*-
+# name: matrix
+# key: mtx
+# --
+$
+\begin{array}{ccc}
+
+\end{array}
+$

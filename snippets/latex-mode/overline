@@ -1,0 +1,5 @@
+# -*- mode: latex -*-
+# name: overline
+# key: o
+# --
+\overline{$1}$0

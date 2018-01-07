@@ -1,0 +1,5 @@
+# -*- mode: latex -*-
+# name: mathbold
+# key: mb
+# --
+\mathbf{$1}$0

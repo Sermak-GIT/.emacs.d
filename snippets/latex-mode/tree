@@ -1,0 +1,16 @@
+# -*- mode: latex -*-
+# name: tree
+# key: tree
+# --
+\begin{center}
+\begin{tikzpicture}[-,
+  >=stealth',
+  level/.style={
+    sibling distance = 3cm,
+    level distance = 1.2cm},
+  scale=0.7] 
+  \node [arn_n] {$1}
+  	$2
+;
+\end{tikzpicture}
+\end{center}

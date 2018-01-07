@@ -1,0 +1,6 @@
+# -*- mode: latex -*-
+# name: right_text_arrow
+# key: rta
+# --
+\xrightarrow[$1]{$2}
+$0

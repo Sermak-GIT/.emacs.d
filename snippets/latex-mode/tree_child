@@ -1,0 +1,7 @@
+# -*- mode: latex -*-
+# name: tree_child
+# key: treec
+# --
+    child { node [arn_n] {$1}
+    	    $2
+          }

@@ -1,0 +1,15 @@
+# -*- mode: latex -*-
+# name: array
+# key: arr
+# expand-env: ((yas/indent-line 'fixed))
+
+# --
+$
+\begin{array}{${1:cc}}$0
+${1:$
+(let ((row ""))
+  (dotimes (i (- (string-width yas/text) 1) row)
+    (setq row (concat row "& "))))
+}\\\\
+\end{array}
+$

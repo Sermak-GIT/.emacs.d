@@ -1,0 +1,7 @@
+# -*- mode: latex -*-
+# name: exerciseenum
+# key: ea
+# --
+\exerciseenum{$1}{
+$0
+}

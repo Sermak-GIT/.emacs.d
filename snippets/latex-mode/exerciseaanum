@@ -1,0 +1,8 @@
+# -*- mode: latex -*-
+# name: exerciseaanum
+# key: e(a
+# --
+\exerciseeenum{$1}{
+\item
+$2
+}

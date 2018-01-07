@@ -1,0 +1,5 @@
+# -*- mode: latex -*-
+# name: monospace
+# key: m
+# --
+\texttt{$1}$0

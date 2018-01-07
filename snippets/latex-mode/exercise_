@@ -1,0 +1,7 @@
+# -*- mode: latex -*-
+# name: exercise
+# key: ex
+# --
+\exercise{$1}{
+$0
+}
