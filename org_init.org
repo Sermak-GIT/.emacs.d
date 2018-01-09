@@ -475,3 +475,13 @@
 (setq ac-auto-show-menu t)
 (global-auto-complete-mode t) 
 #+END_SRC
+* Bracket highlighting and insertion 
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+(electric-pair-mode 1)
+(setq electric-pair-pairs '(
+                            (?\" . ?\")
+                            (?\{ . ?\})
+                            (?\$ . ?\$)
+                            ) ) 
+#+END_SRC

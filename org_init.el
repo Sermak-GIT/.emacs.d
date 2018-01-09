@@ -281,3 +281,11 @@
 (setq ac-auto-start nil)            ; if t starts ac at startup automatically
 (setq ac-auto-show-menu t)
 (global-auto-complete-mode t)
+
+(show-paren-mode 1)
+(electric-pair-mode 1)
+(setq electric-pair-pairs '(
+                            (?\" . ?\")
+                            (?\{ . ?\})
+                            (?\$ . ?\$)
+                            ) )
