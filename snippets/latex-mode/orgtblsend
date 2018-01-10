@@ -1,0 +1,6 @@
+# -*- mode: latex -*-
+# name: orgtablesend
+# key: tbls
+# --
+\#+ORGTBL: SEND $1 orgtbl-to-latex :splice nil :skip 0
+$0

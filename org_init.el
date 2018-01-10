@@ -332,9 +332,7 @@
   :ensure t)
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(add-to-list 'load-path "~/.emacs.d/bash")
-(autoload 'bash-completion-dynamic-complete 
-   "bash-completion"
-   "BASH completion hook")
- (add-hook 'shell-dynamic-complete-functions
-   'bash-completion-dynamic-complete)
+(use-package bash-completion
+       :ensure t)
+(add-hook 'shell-dynamic-complete-functions
+  'bash-completion-dynamic-complete)

@@ -1,0 +1,6 @@
+# -*- mode: latex -*-
+# name: orgtablerer
+# key: tblr
+# --
+% BEGIN RECEIVE ORGTBL ${1:name}
+% END RECEIVE ORGTBL $1
