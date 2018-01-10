@@ -1,0 +1,7 @@
+# -*- mode: org -*-
+# name: use-package
+# key: use
+# --
+(use-package $1
+	:ensure t)
+$0
