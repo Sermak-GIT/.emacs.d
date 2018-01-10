@@ -176,6 +176,32 @@
   (ac-config-default)
   (global-auto-complete-mode t)
   ))
+ (add-hook 'c-mode-common-hook '(lambda ()
+
+        ;; ac-omni-completion-sources is made buffer local so
+        ;; you need to add it to a mode hook to activate on 
+        ;; whatever buffer you want to use it with.  This
+        ;; example uses C mode (as you probably surmised).
+
+        ;; auto-complete.el expects ac-omni-completion-sources to be
+        ;; a list of cons cells where each cell's car is a regex
+        ;; that describes the syntactical bits you want AutoComplete
+        ;; to be aware of. The cdr of each cell is the source that will
+        ;; supply the completion data.  The following tells autocomplete
+        ;; to begin completion when you type in a . or a ->
+
+        (add-to-list 'ac-omni-completion-sources
+                     (cons "\\." '(ac-source-semantic)))
+        (add-to-list 'ac-omni-completion-sources
+                     (cons "->" '(ac-source-semantic)))
+
+        ;; ac-sources was also made buffer local in new versions of
+        ;; autocomplete.  In my case, I want AutoComplete to use 
+        ;; semantic and yasnippet (order matters, if reversed snippets
+        ;; will appear before semantic tag completions).
+
+        (setq ac-sources '(ac-source-semantic ac-source-yasnippet))
+))
 
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
@@ -280,7 +306,19 @@
 (ac-config-default)
 (setq ac-auto-start nil)            ; if t starts ac at startup automatically
 (setq ac-auto-show-menu t)
-(global-auto-complete-mode t)
+(global-auto-complete-mode t) 
+
+(require 'ac-math) ; This is not needed when you install from MELPA
+
+(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+
+(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
+  (setq ac-sources
+     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+               ac-sources)))
+
+(add-hook 'TeX-mode-hook 'ac-latex-mode-setup)
+(setq ac-math-unicode-in-math-p t)
 
 (show-paren-mode 1)
 (electric-pair-mode 1)
@@ -289,3 +327,14 @@
                             (?\{ . ?\})
                             (?\$ . ?\$)
                             ) )
+
+(use-package magit
+  :ensure t)
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(add-to-list 'load-path "~/.emacs.d/bash")
+(autoload 'bash-completion-dynamic-complete 
+   "bash-completion"
+   "BASH completion hook")
+ (add-hook 'shell-dynamic-complete-functions
+   'bash-completion-dynamic-complete)

@@ -1,0 +1,43 @@
+# -*- mode: latex -*-
+# name: engelbert
+# key: engel
+# --
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage[american]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newcommand{\exercise}[2]{\subsection*{Exercise #1}{#2}}
+\newcommand{\exerciseenum}[2]{\subsection*{Exercise #1}{\begin{enumerate}[a)]#2\end{enumerate}}}
+\newcommand{\exerciseeenum}[2]{\subsection*{Exercise #1}{\begin{enumerate}[(a)]#2\end{enumerate}}}
+\newcommand{\exerciseinum}[2]{\subsection*{Exercise #1}{\begin{enumerate}[i)]#2\end{enumerate}}}
+\newcommand{\abs}[1]{\ensuremath{\left|\, #1 \,\right|}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor\, #1 \,\right\rfloor}}
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil\, #1 \,\right\rceil}}
+\newcommand{\set}[1]{\ensuremath{\left{{#1}\right}}}
+\newcommand{\setbuild}[2]{\ensuremath{\set{{#1}\mid{#2}}}}
+\newcommand{\seq}[1]{\ensuremath{\left{{#1}\right}}}
+\newcommand{\TT}{\ensuremath{\mathbb{T}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\NNp}{\ensuremath{\mathbb{N}^{+}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\ZZp}{\ensuremath{\mathbb{Z}^{+}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\QQp}{\ensuremath{\mathbb{Q}^{+}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\RRp}{\ensuremath{\mathbb{R}^{+}}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\power}[1]{\ensuremath{{\cal P}\left({#1}\right)}}
+
+\title{$1 \\\\ Assignment $2}
+\author{Matti Eisenlohr \\\\S1000794 \and Egidius Mysliwietz \\\\S1000796}
+\begin{document}
+\maketitle
+$0
+\end{document}
