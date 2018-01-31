@@ -1,0 +1,20 @@
+
+Warning: due to a long standing Gtk+ bug
+http://bugzilla.gnome.org/show_bug.cgi?id=85715
+Emacs might crash when run in daemon mode and the X11 connection is unexpectedly lost.
+Using an Emacs configured with --with-x-toolkit=lucid does not have this problem.
+Loading /home/user/.emacs.d/org_init.el (source)...
+Eager macro-expansion failure: (void-function -map)
+[yas] Prepared just-in-time loading of snippets successfully.
+[yas] Prepared just-in-time loading of snippets successfully.
+Error (use-package): atomic-chrome/:config: Cannot bind server socket: Address already in use
+Loading /home/user/.emacs.d/org_init.el (source)...done
+Loaded /home/user/.emacs.d/org_init.el
+Turning on magit-auto-revert-mode...
+Turning on magit-auto-revert-mode...done
+Starting Emacs daemon.
+Unable to start the daemon.
+Another instance of Emacs is running the server, either as daemon or interactively.
+You can use emacsclient to connect to that Emacs process.
+Wrote /home/user/.emacs.d/ac-comphist.dat
+Error: server did not start correctly

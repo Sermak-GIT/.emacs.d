@@ -16,7 +16,7 @@
         :ensure t)
 
 (use-package which-key
-      :ensure t 
+      :ensure t pre
       :config
       (which-key-mode))
 
@@ -348,8 +348,5 @@
 (use-package atomic-chrome
 :ensure t
 :config 
-(atomic-chrome-start-server)
-(latex-mode)
-(latex-preview-pane-mode 0)
-(atomic-chrome-edit-mode))
+(atomic-chrome-start-server))
 (setq atomic-chrome-buffer-open-style 'frame)
