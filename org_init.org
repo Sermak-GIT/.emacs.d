@@ -1,5 +1,9 @@
 #+STARTUP: overview
 
+* repos
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+#+END_SRC
 * Encoding
 #+BEGIN_SRC emacs-lisp
 (set-language-environment "UTF-8")
@@ -553,4 +557,10 @@
 
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+#+END_SRC
+* Emacs edit in chrome
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(require 'edit-server)
+(edit-server-start)
 #+END_SRC

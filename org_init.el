@@ -1,4 +1,6 @@
 
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setenv "LANG" "en_US.UTF-8")
@@ -336,3 +338,13 @@
        :ensure t)
 (add-hook 'shell-dynamic-complete-functions
   'bash-completion-dynamic-complete)
+
+(use-package magit-gitflow
+        :ensure t)
+
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(require 'edit-server)
+(edit-server-start)
