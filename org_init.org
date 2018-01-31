@@ -564,6 +564,7 @@
 :ensure t
 :config 
 (atomic-chrome-start-server))
+(setq atomic-chrome-buffer-open-style 'frame)
 #+END_SRC
 
 

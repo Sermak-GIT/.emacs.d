@@ -345,6 +345,7 @@
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(require 'edit-server)
-(edit-server-start)
+(use-package atomic-chrome
+:ensure t
+:config 
+(atomic-chrome-start-server))
