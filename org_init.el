@@ -348,8 +348,14 @@
 (use-package atomic-chrome
 :ensure t
 :config 
-(atomic-chrome-start-server)
+(atomic-chrome-start-server))
+
+(defun atomic-latex-start ()
 (latex-mode)
-(latex-preview-pane-mode 0)
-(atomic-chrome-edit-mode))
+(latex-preview-pane-mode)
+(atomic-chrome-edit-mode)
+)
+
 (setq atomic-chrome-buffer-open-style 'frame)
+
+(global-set-key (kbd "C-ü") 'atomic-latex-start)
