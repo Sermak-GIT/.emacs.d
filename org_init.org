@@ -18,6 +18,7 @@
 (menu-bar-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+END_SRC
 
 * try

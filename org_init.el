@@ -351,6 +351,7 @@
 (atomic-chrome-start-server))
 
 (defun atomic-latex-start ()
+(interactive)
 (latex-mode)
 (latex-preview-pane-mode)
 (atomic-chrome-edit-mode)
@@ -358,4 +359,4 @@
 
 (setq atomic-chrome-buffer-open-style 'frame)
 
-(global-set-key (kbd "C-ü") 'atomic-latex-start)
+(global-set-key (kbd "C-ü") (lambda () (interactive) (atomic-latex-start)))
