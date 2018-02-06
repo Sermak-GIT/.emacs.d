@@ -11,6 +11,7 @@
 (menu-bar-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (use-package try
         :ensure t)
@@ -360,3 +361,8 @@
 (setq atomic-chrome-buffer-open-style 'frame)
 
 (global-set-key (kbd "C-ü") (lambda () (interactive) (atomic-latex-start)))
+
+(use-package company
+        :ensure t)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
