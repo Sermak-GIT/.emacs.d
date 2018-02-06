@@ -585,5 +585,6 @@
 (use-package company
 	:ensure t)
 (require 'company)
+(setq company-backends (delete 'company-semantic company-backends))
 (add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
