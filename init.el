@@ -29,7 +29,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (atomic-chrome magit-gitflow bash-completion magit ox-reveal monokai-theme spacemacs-theme base16-theme zenburn-theme tex auctex ace-window noflet org-ac org-bullets which-key use-package try))))
+    (evil atomic-chrome magit-gitflow bash-completion magit ox-reveal monokai-theme spacemacs-theme base16-theme zenburn-theme tex auctex ace-window noflet org-ac org-bullets which-key use-package try))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

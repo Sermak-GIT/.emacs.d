@@ -1,0 +1,5 @@
+# -*- mode: c -*-
+# name: fileopen
+# key: open
+# --
+FILE *in = fopen(argv[1], "r");

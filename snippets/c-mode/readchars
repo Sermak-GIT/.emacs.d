@@ -1,0 +1,8 @@
+# -*- mode: c -*-
+# name: readchars
+# key: rchars
+# --
+wint_t c;
+while((c = fgetwc(in)) != WEOF) \{
+$1
+\}$0

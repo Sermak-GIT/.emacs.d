@@ -1,0 +1,5 @@
+# -*- mode: latex -*-
+# name: choosemath
+# key: cc
+# --
+$${$1} \choose{$2}$$0

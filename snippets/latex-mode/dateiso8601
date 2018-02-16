@@ -1,0 +1,5 @@
+# -*- mode: latex -*-
+# name: dateiso8601
+# key: date
+# --
+\date{\the\year-\ifnum\month<10\relax0\fi\the\month-\ifnum\day<10\relax0\fi\the\day}

@@ -1,0 +1,7 @@
+# -*- mode: c -*-
+# name: fileopen
+# key: open
+# --
+FILE *in = fopen($1, "$2");$0
+
+fclose(in);

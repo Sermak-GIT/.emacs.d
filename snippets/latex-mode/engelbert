@@ -37,6 +37,7 @@
 
 \title{$1 \\\\ Assignment $2}
 \author{Matti Eisenlohr \\\\S1000794 \and Egidius Mysliwietz \\\\S1000796}
+\date{\the\year-\ifnum\month<10\relax0\fi\the\month-\ifnum\day<10\relax0\fi\the\day}
 \begin{document}
 \maketitle
 $0

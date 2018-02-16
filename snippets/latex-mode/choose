@@ -1,0 +1,5 @@
+# -*- mode: latex -*-
+# name: choose
+# key: c
+# --
+{$1}\choose{$2}$3

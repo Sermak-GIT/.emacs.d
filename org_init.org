@@ -588,3 +588,9 @@
 (setq company-backends (delete 'company-semantic company-backends))
 (add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
+* Evil mode
+#+BEGIN_SRC emacs-lisp 
+(use-package evil
+	:ensure t)
+(evil-mode 1)
+#+END_SRC
