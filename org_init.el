@@ -347,9 +347,17 @@
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
 (use-package atomic-chrome
-:ensure t
-:config 
-(atomic-chrome-start-server))
+:ensure t)
+
+(defun ztlevi-atomic-chrome-server-running-p ()
+      (cond ((executable-find "lsof")
+             (zerop (call-process "lsof" nil nil nil "-i" ":64292")))
+            ((executable-find "netstat") ; Windows
+             (zerop (call-process-shell-command "netstat -aon | grep 64292")))))
+
+    (if (ztlevi-atomic-chrome-server-running-p)
+        (message "Can't start atomic-chrome server, because port 64292 is already used")
+      (atomic-chrome-start-server))
 
 (defun atomic-latex-start ()
 (interactive)
@@ -367,3 +375,43 @@
 (require 'company)
 (setq company-backends (delete 'company-semantic company-backends))
 (add-hook 'after-init-hook 'global-company-mode)
+
+(use-package evil
+        :ensure t)
+(evil-mode 1)
+
+(defun insert-oe ()
+  "Insert \"o at cursor point."
+  (interactive)
+  (insert "\\\"o"))
+(global-set-key (kbd "ö") 'insert-oe) ; ö
+
+(defun insert-OE ()
+  "Insert \"O at cursor point."
+  (interactive)
+  (insert "\\\"O"))
+(global-set-key (kbd "Ö") 'insert-OE) ; Ö
+
+(defun insert-ae ()
+  "Insert \"a at cursor point."
+  (interactive)
+  (insert "\\\"a"))
+(global-set-key (kbd "ä") 'insert-ae) ; ä
+
+(defun insert-AE ()
+  "Insert \"A at cursor point."
+  (interactive)
+  (insert "\\\"A"))
+(global-set-key (kbd "Ä") 'insert-AE) ; Ä
+
+(defun insert-ue ()
+  "Insert \"u at cursor point."
+  (interactive)
+  (insert "\\\"u"))
+(global-set-key (kbd "ü") 'insert-ue) ; ü
+
+(defun insert-UE ()
+  "Insert \"U at cursor point."
+  (interactive)
+  (insert "\\\"U"))
+(global-set-key (kbd "Ü") 'insert-OE) ; Ü
