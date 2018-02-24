@@ -610,6 +610,13 @@
   (interactive)
   (insert "\\\"U"))
 (global-set-key (kbd "Ü") 'insert-OE) ; Ü
+
+(defun insert-ss ()
+  "Insert \"ss at cursor point."
+  (interactive)
+  (insert "\\\"ss"))
+(global-set-key (kbd "ß") 'insert-ss) ; ß
+
 #+END_SRC
   (backward-char 4))
 #+END_SRC

@@ -346,30 +346,6 @@
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
-(use-package atomic-chrome
-:ensure t)
-
-(defun ztlevi-atomic-chrome-server-running-p ()
-      (cond ((executable-find "lsof")
-             (zerop (call-process "lsof" nil nil nil "-i" ":64292")))
-            ((executable-find "netstat") ; Windows
-             (zerop (call-process-shell-command "netstat -aon | grep 64292")))))
-
-    (if (ztlevi-atomic-chrome-server-running-p)
-        (message "Can't start atomic-chrome server, because port 64292 is already used")
-      (atomic-chrome-start-server))
-
-(defun atomic-latex-start ()
-(interactive)
-(latex-mode)
-(latex-preview-pane-mode)
-(atomic-chrome-edit-mode)
-)
-
-(setq atomic-chrome-buffer-open-style 'frame)
-
-(global-set-key (kbd "C-ü") (lambda () (interactive) (atomic-latex-start)))
-
 (use-package company
         :ensure t)
 (require 'company)
@@ -396,7 +372,7 @@
   "Insert \"a at cursor point."
   (interactive)
   (insert "\\\"a"))
-(global-set-key (kbd "ä") 'insert-ae) ; ä
+(global-set-key (kbd "ä") 'insert-ae) ; ä 
 
 (defun insert-AE ()
   "Insert \"A at cursor point."
@@ -415,3 +391,33 @@
   (interactive)
   (insert "\\\"U"))
 (global-set-key (kbd "Ü") 'insert-OE) ; Ü
+
+(defun insert-ss ()
+  "Insert \"ss at cursor point."
+  (interactive)
+  (insert "\\\"ss"))
+(global-set-key (kbd "ß") 'insert-ss) ; ß
+
+(use-package atomic-chrome
+:ensure t)
+
+(defun ztlevi-atomic-chrome-server-running-p ()
+      (cond ((executable-find "lsof")
+             (zerop (call-process "lsof" nil nil nil "-i" ":64292")))
+            ((executable-find "netstat") ; Windows
+             (zerop (call-process-shell-command "netstat -aon | grep 64292")))))
+
+    (if (ztlevi-atomic-chrome-server-running-p)
+        (message "Can't start atomic-chrome server, because port 64292 is already used")
+      (atomic-chrome-start-server))
+
+(defun atomic-latex-start ()
+(interactive)
+(latex-mode)
+(latex-preview-pane-mode)
+(atomic-chrome-edit-mode)
+)
+
+(setq atomic-chrome-buffer-open-style 'frame)
+
+(global-set-key (kbd "C-ü") (lambda () (interactive) (atomic-latex-start)))
