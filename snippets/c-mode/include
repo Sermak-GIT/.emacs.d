@@ -1,7 +1,5 @@
 # -*- mode: c -*-
-# name: main
-# key: main
+# name: include
+# key: #
 # --
-int main(int argc, char *argv[]) \{
-$1
-\}$0
+ #include <$1>$0

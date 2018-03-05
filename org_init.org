@@ -568,10 +568,11 @@
 (add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
 * Evil mode
+Evil mode does not autostart
 #+BEGIN_SRC emacs-lisp 
 (use-package evil
 	:ensure t)
-(evil-mode 1)
+(evil-mode 0)
 #+END_SRC
 * Umlaute to LATEX
 #+BEGIN_SRC emacs-lisp 
@@ -612,13 +613,11 @@
 (global-set-key (kbd "Ü") 'insert-OE) ; Ü
 
 (defun insert-ss ()
-  "Insert \"ss at cursor point."
+  "Insert \ss at cursor point."
   (interactive)
-  (insert "\\\"ss"))
+  (insert "\\ss\ "))
 (global-set-key (kbd "ß") 'insert-ss) ; ß
 
-#+END_SRC
-  (backward-char 4))
 #+END_SRC
 * Emacs edit in chrome
 #+BEGIN_SRC emacs-lisp
@@ -647,4 +646,13 @@
 (global-set-key (kbd "C-ü") (lambda () (interactive) (atomic-latex-start)))
 
 
+#+END_SRC
+* Ansi-Term
+#+BEGIN_SRC emacs-lisp
+(defvar my-term-shell "/bin/bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+
+(global-set-key (kbd "C-ö") 'ansi-term)
 #+END_SRC
