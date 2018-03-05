@@ -20,6 +20,8 @@
   (global-set-key (kbd "<f5>") 'revert-buffer)
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
   (setq scroll-conservatively 100)
+  (global-hl-line-mode)
+
 #+END_SRC
 
 * try
