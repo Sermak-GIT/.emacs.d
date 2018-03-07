@@ -1,0 +1,8 @@
+# -*- mode: emacs-lisp -*-
+# name: use
+# key: use 
+# --
+(use-package $1
+  :ensure t
+  $2
+)$0

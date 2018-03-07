@@ -29,7 +29,8 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (evil atomic-chrome magit-gitflow bash-completion magit ox-reveal monokai-theme spacemacs-theme base16-theme zenburn-theme tex auctex ace-window noflet org-ac org-bullets which-key use-package try))))
+    (latex-preview-pane yasnippet swiper popup-kill-ring dashboard rainbow-delimiters symon diminish spaceline evil atomic-chrome magit-gitflow bash-completion magit ox-reveal monokai-theme spacemacs-theme base16-theme zenburn-theme tex auctex ace-window noflet org-ac org-bullets which-key use-package try)))
+ '(pdf-latex-command "pdflatex"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

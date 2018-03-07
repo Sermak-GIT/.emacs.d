@@ -3,7 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil nil ("noflet.el") (23120 3864 906330 977000))
+;;;### (autoloads nil nil ("noflet-pkg.el" "noflet.el") (23200 25458
+;;;;;;  104219 512000))
 
 ;;;***
 

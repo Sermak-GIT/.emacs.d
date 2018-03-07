@@ -1,0 +1,22 @@
+
+;; ----- smex-history -----
+(
+ pdf-view-midnight-minor-mode
+ latex-preview-update
+ pdf-view-revert-buffer
+ rainbow-mode
+ rainbow-delimiters-mode
+ pdf-tools-install
+ beacon-blink
+)
+
+;; ----- smex-data -----
+(
+ (beacon-blink . 1)
+ (rainbow-delimiters-mode . 4)
+ (pdf-tools-install . 2)
+ (rainbow-mode . 1)
+ (pdf-view-revert-buffer . 1)
+ (latex-preview-update . 1)
+ (pdf-view-midnight-minor-mode . 1)
+)

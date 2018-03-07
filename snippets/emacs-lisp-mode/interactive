@@ -1,0 +1,5 @@
+# -*- mode: emacs-lisp -*-
+# name: interactive
+# key: i
+# --
+(interactive)

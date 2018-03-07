@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "log4e" "log4e.el" (23120 3861 306379 669000))
+;;;### (autoloads nil "log4e" "log4e.el" (23200 25457 108300 472000))
 ;;; Generated autoloads from log4e.el
 
 (autoload 'log4e-mode "log4e" "\
@@ -18,6 +18,10 @@ Major mode for browsing a buffer made by log4e.
 Insert logging statment for trace level log at start of current function/macro.
 
 \(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads nil nil ("log4e-pkg.el") (23163 47776 896613 328000))
 
 ;;;***
 

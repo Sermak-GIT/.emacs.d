@@ -12,6 +12,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(setq scroll-conservatively 100)
+(when window-system (global-hl-line-mode t))
+(when window-system (global-prettify-symbols-mode))
 
 (use-package try
         :ensure t)
@@ -120,17 +123,11 @@
 
 (require 'ox-beamer)
 
-(use-package ace-window
-:ensure t
-:init
-(progn
-(setq aw-scope 'frame)
-(global-set-key (kbd "C-x O") 'other-frame)
-  (global-set-key [remap other-window] 'ace-window)
-  (custom-set-faces
-   '(aw-leading-char-face
-     ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
-  ))
+(setq org-src-window-setup 'current-window)
+
+(add-to-list 'org-structure-template-alist
+             '("el" "#+BEGIN_SRC emacs-lisp\n  ?\n#+END_SRC")
+             )
 
 (use-package counsel
 :ensure t
@@ -282,6 +279,31 @@
 (use-package monokai-theme
       :ensure t)
 
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+  (setq powerline-default-separator (quote arrow))
+  (spaceline-spacemacs-theme))
+
+(use-package diminish
+  :ensure t
+  :init
+  (diminish 'hungry-delete-mode)
+  (diminish 'beacon-mode)
+  (diminish 'rainbow-mode)
+  (diminish 'which-key-mode)
+  (diminish 'company-mode)
+  (diminish 'undo-tree-mode)
+  (diminish 'flycheck-mode)
+  (diminish 'yas-minor-mode)
+  (diminish 'auto-complete-mode)
+  (diminish 'subword-mode)
+  )
+
+(line-number-mode 1)
+(column-number-mode 1)
+
 (require 'package)
 (package-initialize)
 
@@ -328,8 +350,9 @@
 (setq electric-pair-pairs '(
                             (?\" . ?\")
                             (?\{ . ?\})
+                            (?\[ . ?\])
                             (?\$ . ?\$)
-                            ) )
+                            ))
 
 (use-package magit
   :ensure t)
@@ -347,14 +370,14 @@
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
 (use-package company
-        :ensure t)
-(require 'company)
-(setq company-backends (delete 'company-semantic company-backends))
-(add-hook 'after-init-hook 'global-company-mode)
+        :ensure t
+        :config
+        (add-hook 'after-init-hook 'global-company-mode)
+)
 
 (use-package evil
         :ensure t)
-(evil-mode 1)
+(evil-mode 0)
 
 (defun insert-oe ()
   "Insert \"o at cursor point."
@@ -393,10 +416,71 @@
 (global-set-key (kbd "Ü") 'insert-OE) ; Ü
 
 (defun insert-ss ()
-  "Insert \"ss at cursor point."
+  "Insert \ss at cursor point."
   (interactive)
-  (insert "\\\"ss"))
+  (insert "\\ss\ "))
 (global-set-key (kbd "ß") 'insert-ss) ; ß
+
+(defvar my-term-shell "/bin/bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+
+(global-set-key (kbd "C-ö") 'ansi-term)
+
+(use-package pdf-tools
+:ensure t)
+(pdf-tools-install)
+(setq pdf-view-midnight-colors '("#ffeeee" . "#212121"))
+
+(setq ido-enable-flex-matching nil)
+(setq ido-create-new-buffer 'always)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+(use-package ido-vertical-mode
+  :ensure t
+  :init
+  (ido-vertical-mode 1))
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+
+(use-package smex
+  :ensure t
+  :init (smex-initialize)
+  :bind
+  ("M-x" . smex))
+
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+
+(defun config-visit ()
+  (interactive)
+  (find-file "~/.emacs.d/org_init.org"))
+(global-set-key (kbd "C-c e") 'config-visit)
+
+(defun config-reload ()
+  (interactive)
+  (org-babel-load-file (expand-file-name "~/.emacs.d/org_init.org"))
+  )
+
+(global-set-key (kbd "C-c r") 'config-reload)
+
+(global-set-key (kbd "C-x b") 'ibuffer)
+
+(use-package rainbow-mode
+        :ensure t
+      :init (rainbow-mode 1))
+
+(use-package switch-window
+  :ensure t
+  :config
+  (setq switch-window-input-style 'minibuffer)
+  (setq switch-window-increase 4)
+  (setq switch-window-threshold 2)
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-qwerty-shortcuts
+        '("j" "k" "l" "a" "s" "d" "f"))
+  :bind
+  ([remap other-window] . switch-window))
 
 (use-package atomic-chrome
 :ensure t)
@@ -409,15 +493,88 @@
 
     (if (ztlevi-atomic-chrome-server-running-p)
         (message "Can't start atomic-chrome server, because port 64292 is already used")
-      (atomic-chrome-start-server))
+      (ignore-errors (atomic-chrome-start-server)))
 
 (defun atomic-latex-start ()
-(interactive)
-(latex-mode)
-(latex-preview-pane-mode)
-(atomic-chrome-edit-mode)
+  (interactive)
+  (latex-mode)
+  (latex-preview-pane-mode)
+  (atomic-chrome-edit-mode)
 )
 
 (setq atomic-chrome-buffer-open-style 'frame)
 
 (global-set-key (kbd "C-ü") (lambda () (interactive) (atomic-latex-start)))
+
+(defun split-and-follow-horizontally ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+
+(defun split-and-follow-vertically ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+
+(use-package beacon
+        :ensure t)
+(beacon-mode 1)
+
+(global-subword-mode 1)
+
+(defun kill-whole-word ()
+  (interactive)
+  (backward-word)
+  (kill-word 1))
+(global-set-key (kbd "C-c k w") 'kill-whole-word)
+
+(use-package hungry-delete
+        :ensure t
+        :config (global-hungry-delete-mode 0)
+)
+
+(use-package sudo-edit
+  :ensure t
+  :bind ("C-c s" . sudo-edit)
+  )
+
+(use-package symon
+  :ensure t
+  )
+(symon-mode 1)
+
+(defun kill-curr-buffer ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+(global-set-key (kbd "C-x k") 'kill-curr-buffer)
+
+(defun copy-whole-line ()
+  (interactive)
+  (save-excursion
+    (kill-new
+     (buffer-substring(
+                       (point-at-bol)
+                       (point-at-eol))))))
+(global-set-key (kbd "C-c w l") 'copy-whole-line)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :init
+  (rainbow-delimiters-mode 1)
+  )
+(rainbow-delimiters-mode -1)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-items '((recents . 10)))
+  (setq dashboard-banner-logo-title "")
+  )
+
+(setq display-time-24hr-format t)
+(display-time-mode 1)
