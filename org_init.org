@@ -688,7 +688,7 @@ Evil mode does not autostart
   (setq pdf-view-midnight-colors '("#ffeeee" . "#272822"))
   (add-hook 'pdf-view-mode-hook
             (lambda ()
-              add-hook 'pdf-view-midnight-minor-mode)
+              add-hook 'pdf-view-midnight-minor-mode))
 #+END_SRC
 * IDO
 ** enable ido mode

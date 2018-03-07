@@ -431,7 +431,10 @@
 (use-package pdf-tools
 :ensure t)
 (pdf-tools-install)
-(setq pdf-view-midnight-colors '("#ffeeee" . "#212121"))
+(setq pdf-view-midnight-colors '("#ffeeee" . "#272822"))
+(add-hook 'pdf-view-mode-hook
+          (lambda ()
+            add-hook 'pdf-view-midnight-minor-mode)
 
 (setq ido-enable-flex-matching nil)
 (setq ido-create-new-buffer 'always)
