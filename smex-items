@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
- pdf-view-midnight-minor-mode
- latex-preview-update
- pdf-view-revert-buffer
- rainbow-mode
- rainbow-delimiters-mode
- pdf-tools-install
- beacon-blink
+ global-hl-line-mode
+ global-visual-line-mode
+ describe-font
+ menu-set-font
+ font-show-log
+ gnus-slave
+ gnus
 )
 
 ;; ----- smex-data -----
@@ -19,4 +19,17 @@
  (pdf-view-revert-buffer . 1)
  (latex-preview-update . 1)
  (pdf-view-midnight-minor-mode . 1)
+ (overwrite-mode . 1)
+ (pdf-view-dark-minor-mode . 3)
+ (term-char-mode . 1)
+ (term-line-mode . 1)
+ (kill-buffer . 1)
+ (gnus . 2)
+ (gnus-version . 1)
+ (gnus-slave . 1)
+ (describe-font . 3)
+ (menu-set-font . 3)
+ (font-show-log . 1)
+ (global-visual-line-mode . 3)
+ (global-hl-line-mode . 1)
 )

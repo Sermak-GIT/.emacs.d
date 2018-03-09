@@ -680,6 +680,7 @@ Evil mode does not autostart
 
 #+END_SRC
 * Ansi-Term
+
 #+BEGIN_SRC emacs-lisp
 (defvar my-term-shell "/bin/bash")
 (defadvice ansi-term (before force-bash)
@@ -898,15 +899,4 @@ disabled
 #+BEGIN_SRC emacs-lisp
   (setq display-time-24hr-format t)
   (display-time-mode 1)
-#+END_SRC
-* Temporarily maximize current buffer
-#+BEGIN_SRC emacs-lisp
-  (defun toggle-maximize-buffer () "Maximize buffer"
-  (interactive)
-  (if (= 1 (length (window-list)))
-      (jump-to-register '_) 
-    (progn
-      (window-configuration-to-register '_)
-      (delete-other-windows))))
-  (global-set-key (kbd "C-c m") 'toggle-maximize-buffer)
 #+END_SRC

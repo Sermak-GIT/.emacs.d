@@ -14,7 +14,16 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq scroll-conservatively 100)
 (when window-system (global-hl-line-mode t))
+(add-hook 'eshell-mode-hook (lambda ()
+                                    (setq-local global-hl-line-mode
+                                                nil)))
+(add-hook 'term-mode-hook (lambda ()
+                                    (setq-local global-hl-line-mode
+                                                nil)))
 (when window-system (global-prettify-symbols-mode))
+
+(add-to-list 'default-frame-alist '(font . "Source Code Pro for Powerline:pixelsize=15:foundry=ADBO:weight=semi-bold:slant=normal:width=normal:spacing=100:scalable=true"))
+(set-face-attribute 'default t :font "Source Code Pro for Powerline:pixelsize=15:foundry=ADBO:weight=semi-bold:slant=normal:width=normal:spacing=100:scalable=true" )
 
 (use-package try
         :ensure t)
@@ -434,7 +443,7 @@
 (setq pdf-view-midnight-colors '("#ffeeee" . "#272822"))
 (add-hook 'pdf-view-mode-hook
           (lambda ()
-            add-hook 'pdf-view-midnight-minor-mode)
+            add-hook 'pdf-view-midnight-minor-mode))
 
 (setq ido-enable-flex-matching nil)
 (setq ido-create-new-buffer 'always)
