@@ -50,6 +50,11 @@
   #+END_SRC
 
 * Org mode
+** Org indent mode 
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook 'org-indent-mode)
+#+END_SRC
+** Stuff
 Org bullets makes things look pretty
   #+BEGIN_SRC emacs-lisp
 
@@ -623,10 +628,41 @@ Org bullets makes things look pretty
           :ensure t
           :config
           (add-hook 'after-init-hook 'global-company-mode)
-  )
+          (setq company-idle-delay 0)
+          (setq company-minimum-prefix-length 3)
+          )
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "M-n") nil)
+    (define-key company-active-map (kbd "M-p") nil)
+    (define-key company-active-map (kbd "C-n") #'company-select-next)
+    (define-key company-active-map (kbd "C-p") #'company-select-previous)
+    )
+
+  (with-eval-after-load 'company
+    (add-hook 'c++-mode-hook 'company-mode)
+    (add-hook 'c-mode-hook 'company-mode)
+      )
 #+END_SRC
 (setq company-backends (delete 'company-semantic company-backends))
 (require 'company)
+* Company Backends
+** C and C++
+#+BEGIN_SRC emacs-lisp
+(use-package company-irony
+  :ensure t
+  :config
+  (require 'company)
+  (add-to-list 'company-backends 'company-irony)
+  )
+
+(use-package irony
+  :ensure t
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  )
+#+END_SRC
 * Evil mode
 Evil mode does not autostart
 #+BEGIN_SRC emacs-lisp 
