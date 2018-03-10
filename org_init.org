@@ -909,4 +909,19 @@ disabled
       (window-configuration-to-register '_)
       (delete-other-windows))))
   (global-set-key (kbd "C-c m") 'toggle-maximize-buffer)
+
+#+END_SRC
+* Coq
+** Proof general
+Install proofgeneral from https://github.com/cpitclaudel/company-coq
+git clone https://github.com/ProofGeneral/PG ~/.emacs.d/lisp/PG
+cd ~/.emacs.d/lisp/PG
+make
+** Company coq
+#+BEGIN_SRC emacs-lisp
+    (load "~/.emacs.d/lisp/PG/generic/proof-site")
+    (use-package company-coq
+      :ensure t
+      )
+    (add-hook 'coq-mode-hook #'company-coq-mode)
 #+END_SRC

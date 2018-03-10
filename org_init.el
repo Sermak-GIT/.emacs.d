@@ -590,3 +590,18 @@
 
 (setq display-time-24hr-format t)
 (display-time-mode 1)
+
+(defun toggle-maximize-buffer () "Maximize buffer"
+(interactive)
+(if (= 1 (length (window-list)))
+    (jump-to-register '_) 
+  (progn
+    (window-configuration-to-register '_)
+    (delete-other-windows))))
+(global-set-key (kbd "C-c m") 'toggle-maximize-buffer)
+
+(load "~/.emacs.d/lisp/PG/generic/proof-site")
+(use-package company-coq
+  :ensure t
+  )
+(add-hook 'coq-mode-hook #'company-coq-mode)
