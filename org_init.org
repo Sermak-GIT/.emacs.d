@@ -940,3 +940,10 @@ make
       :bind ("C-q" . er/expand-region)
       )
 #+END_SRC
+* Pretty-symbols
+#+BEGIN_SRC emacs-lisp
+    (use-package pretty-mode
+      :ensure t
+      :config (add-hook 'prog-mode-hook 'pretty-mode)
+      )
+#+END_SRC
