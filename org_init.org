@@ -925,3 +925,18 @@ make
       )
     (add-hook 'coq-mode-hook #'company-coq-mode)
 #+END_SRC
+* Mark multiple
+#+BEGIN_SRC emacs-lisp
+  (use-package mark-multiple
+    :ensure t
+    :bind ("C-c q" . 'mark-next-like-this)
+    )
+
+#+END_SRC
+* Expand region
+#+BEGIN_SRC emacs-lisp
+    (use-package expand-region
+      :ensure t
+      :bind ("C-q" . er/expand-region)
+      )
+#+END_SRC

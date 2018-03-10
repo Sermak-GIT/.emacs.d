@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
- company-coq-tutorial
- pdf-view-midnight-minor-mode
- coq-mode
- flycheck-disable-checker
- atomic-chrome-edit-mode
- package-refresh-contents
- spaceline-toggle-nyan-cat-on
+ global-hl-line-mode
+ global-visual-line-mode
+ describe-font
+ menu-set-font
+ font-show-log
+ gnus-slave
+ gnus
 )
 
 ;; ----- smex-data -----
@@ -18,7 +18,7 @@
  (rainbow-mode . 1)
  (pdf-view-revert-buffer . 1)
  (latex-preview-update . 1)
- (pdf-view-midnight-minor-mode . 2)
+ (pdf-view-midnight-minor-mode . 1)
  (overwrite-mode . 1)
  (pdf-view-dark-minor-mode . 3)
  (term-char-mode . 1)
@@ -32,11 +32,4 @@
  (font-show-log . 1)
  (global-visual-line-mode . 3)
  (global-hl-line-mode . 1)
- (atomic-chrome-edit-mode . 6)
- (spaceline-toggle-nyan-cat . 2)
- (spaceline-toggle-nyan-cat-on . 1)
- (package-refresh-contents . 1)
- (company-coq-tutorial . 3)
- (coq-mode . 2)
- (flycheck-disable-checker . 1)
 )
