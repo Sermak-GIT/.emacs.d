@@ -33,6 +33,8 @@
       :config
       (which-key-mode))
 
+(add-hook 'org-mode-hook 'org-indent-mode)
+
 (setenv "BROWSER" "chromium-browser")
 
         (use-package org-bullets
@@ -382,7 +384,35 @@
         :ensure t
         :config
         (add-hook 'after-init-hook 'global-company-mode)
-)
+        (setq company-idle-delay 0)
+        (setq company-minimum-prefix-length 3)
+        )
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  )
+
+(with-eval-after-load 'company
+  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'c-mode-hook 'company-mode)
+    )
+
+(use-package company-irony
+  :ensure t
+  :config
+  (require 'company)
+  (add-to-list 'company-backends 'company-irony)
+  )
+
+(use-package irony
+  :ensure t
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  )
 
 (use-package evil
         :ensure t)
@@ -480,7 +510,7 @@
 
 (use-package rainbow-mode
         :ensure t
-      :init (rainbow-mode 1))
+      :init (add-hook 'prog-mode-hook 'rainbow-mode))
 
 (use-package switch-window
   :ensure t
@@ -605,3 +635,28 @@
   :ensure t
   )
 (add-hook 'coq-mode-hook #'company-coq-mode)
+
+(use-package mark-multiple
+  :ensure t
+  :bind ("C-c q" . 'mark-next-like-this)
+  )
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-q" . er/expand-region)
+  )
+
+(use-package pretty-mode
+  :ensure t
+  :config (add-hook 'prog-mode-hook 'pretty-mode)
+  )
+
+(add-hook 'server-switch-hook 
+        (lambda ()
+          (when (current-local-map)
+            (use-local-map (copy-keymap (current-local-map))))
+          (local-set-key (kbd "C-x k") 'server-edit)))
+
+(setq org-agenda-files (append
+                        (file-expand-wildcards "~/Documents/agenda/*.org")
+                        ))

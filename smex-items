@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ man
+ company-shell
+ prettify-symbols-mode
+ pretty-mode
  global-hl-line-mode
- global-visual-line-mode
+ rainbow-delimiters-mode
  describe-font
- menu-set-font
- font-show-log
- gnus-slave
- gnus
 )
 
 ;; ----- smex-data -----
@@ -32,4 +32,10 @@
  (font-show-log . 1)
  (global-visual-line-mode . 3)
  (global-hl-line-mode . 1)
+ (pretty-mode . 1)
+ (prettify-symbols-mode . 1)
+ (man . 3)
+ (company-shell . 1)
+ (atomic-chrome-edit-mode . 2)
+ (coq-mode . 1)
 )
