@@ -243,7 +243,13 @@
 (use-package yasnippet
   :ensure t
   :init
-    (yas-global-mode 1))
+    (yas-global-mode 1)
+  :config
+    (use-package yasnippet-snippets
+      :ensure t
+      )
+    (yas-reload-all)
+)
 
 (use-package latex-preview-pane
         :ensure t)
@@ -324,6 +330,23 @@
   (add-hook 'c-mode-hook 'company-mode)
     )
 
+(with-eval-after-load 'company
+  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'c++-mode-hook 'company-mode))
+
+(use-package flycheck-clang-analyzer
+  :ensure t
+  :config
+  (with-eval-after-load 'flycheck
+    (require 'flycheck-clang-analyzer)
+     (flycheck-clang-analyzer-setup)))
+
+(use-package company-c-headers
+  :ensure t
+  :config
+    (require 'company)
+    (add-to-list 'company-backends 'company-c-headers))
+
 (use-package company-irony
   :ensure t
   :config
@@ -338,6 +361,85 @@
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   )
+
+(with-eval-after-load 'company
+    (add-hook 'python-mode-hook 'company-mode))
+
+(use-package company-jedi
+  :ensure t
+  :config
+    (require 'company)
+    (add-to-list 'company-backends 'company-jedi))
+
+(defun python-mode-company-init ()
+  (setq-local company-backends '((company-jedi
+                                  company-etags
+                                  company-dabbrev-code))))
+
+(use-package company-jedi
+  :ensure t
+  :config
+    (require 'company)
+    (add-hook 'python-mode-hook 'python-mode-company-init))
+
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+
+(use-package slime
+  :ensure t
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq slime-contribs '(slime-fancy)))
+
+(use-package slime-company
+  :ensure t
+  :init
+    (require 'company)
+    (slime-setup '(slime-fancy slime-company)))
+
+(add-hook 'lua-mode-hook 'company-mode)
+
+(defun custom-lua-repl-bindings ()
+  (local-set-key (kbd "C-c C-s") 'lua-show-process-buffer)
+  (local-set-key (kbd "C-c C-h") 'lua-hide-process-buffer))
+
+(defun lua-mode-company-init ()
+  (setq-local company-backends '((company-lua
+                                  company-etags
+                                  company-dabbrev-code))))
+
+(use-package company-lua
+  :ensure t
+  :config
+    (require 'company)
+    (setq lua-indent-level 4)
+    (setq lua-indent-string-contents t)
+    (add-hook 'lua-mode-hook 'custom-lua-repl-bindings)
+    (add-hook 'lua-mode-hook 'lua-mode-company-init))
+
+(add-hook 'shell-mode-hook 'company-mode)
+
+(defun shell-mode-company-init ()
+  (setq-local company-backends '((company-shell
+                                  company-shell-env
+                                  company-etags
+                                  company-dabbrev-code))))
+
+(use-package company-shell
+  :ensure t
+  :config
+    (require 'company)
+    (add-hook 'shell-mode-hook 'shell-mode-company-init))
+
+(with-eval-after-load 'company
+    (add-hook 'latex-mode-hook 'company-mode))
+
+(defun latex-mode-setup ()
+  (setq-local company-backends
+              (append '((company-math-symbols-latex company-math-symbols-unicode company-auctex-macros))
+                      company-backends)))
+
+(add-hook 'LaTeX-mode-hook 'latex-mode-setup)
 
 (use-package evil
         :ensure t)
@@ -585,3 +687,12 @@
 (setq org-agenda-files (append
                         (file-expand-wildcards "~/Documents/agenda/*.org")
                         ))
+
+(use-package fancy-battery
+:ensure t
+:config
+  (setq fancy-battery-show-percentage t)
+  (setq battery-update-interval 15)
+  (if window-system
+    (fancy-battery-mode)
+    (display-battery-mode)))
