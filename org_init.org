@@ -310,10 +310,16 @@ Org bullets makes things look pretty
 #+END_SRC
 * YASnippet
 #+BEGIN_SRC emacs-lisp
-(use-package yasnippet
-  :ensure t
-  :init
-    (yas-global-mode 1))
+  (use-package yasnippet
+    :ensure t
+    :init
+      (yas-global-mode 1)
+    :config
+      (use-package yasnippet-snippets
+        :ensure t
+        )
+      (yas-reload-all)
+  )
 #+END_SRC
 
 * Latex Preview Pane
@@ -364,49 +370,6 @@ Org bullets makes things look pretty
   (line-number-mode 1)
   (column-number-mode 1)
 #+END_SRC
-* Latex-Auto-Complete
-#+BEGIN_SRC emacs-lisp
-(require 'package)
-(package-initialize)
-
-;; yasnippet code 'optional', before auto-complete
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;; auto-complete setup, sequence is important
-(require 'auto-complete)
-(add-to-list 'ac-modes 'latex-mode) ; beware of using 'LaTeX-mode instead
-(use-package ac-math
-  :ensure t)
-(require 'ac-math) ; package should be installed first 
-(defun my-ac-latex-mode () ; add ac-sources for latex
-   (setq ac-sources
-         (append '(ac-source-math-unicode
-           ac-source-math-latex
-           ac-source-latex-commands)
-                 ac-sources)))
-(add-hook 'LaTeX-mode-hook 'my-ac-latex-mode)
-(setq ac-math-unicode-in-math-p t)
-(ac-flyspell-workaround) ; fixes a known bug of delay due to flyspell (if it is there)
-(add-to-list 'ac-modes 'org-mode) ; auto-complete for org-mode (optional)
-(require 'auto-complete-config) ; should be after add-to-list 'ac-modes and hooks
-(ac-config-default)
-(setq ac-auto-start nil)            ; if t starts ac at startup automatically
-(setq ac-auto-show-menu t)
-(global-auto-complete-mode t) 
-
-(require 'ac-math) ; This is not needed when you install from MELPA
-
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
-
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-               ac-sources)))
-
-(add-hook 'TeX-mode-hook 'ac-latex-mode-setup)
-(setq ac-math-unicode-in-math-p t)
-#+END_SRC
 * Bracket highlighting and insertion 
 #+BEGIN_SRC emacs-lisp
   (show-paren-mode 1)
@@ -432,16 +395,6 @@ Org bullets makes things look pretty
  (add-hook 'shell-dynamic-complete-functions
    'bash-completion-dynamic-complete)
 #+END_SRC
-* Org Auto Complete
-#+BEGIN_SRC emacs_lisp
-(require 'org-ac)
-
-;; Make config suit for you. About the config item, eval the following sexp.
-;; (customize-group "org-ac")
-
-(org-ac/config-default)
-#+END_SRC
-
 * Magit Gitflow
 #+BEGIN_SRC emacs-lisp
 (use-package magit-gitflow

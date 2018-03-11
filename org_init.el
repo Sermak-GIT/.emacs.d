@@ -180,40 +180,6 @@
 :ensure t
 :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
 
-(use-package auto-complete
-:ensure t
-:init
-(progn
-  (ac-config-default)
-  (global-auto-complete-mode t)
-  ))
- (add-hook 'c-mode-common-hook '(lambda ()
-
-        ;; ac-omni-completion-sources is made buffer local so
-        ;; you need to add it to a mode hook to activate on 
-        ;; whatever buffer you want to use it with.  This
-        ;; example uses C mode (as you probably surmised).
-
-        ;; auto-complete.el expects ac-omni-completion-sources to be
-        ;; a list of cons cells where each cell's car is a regex
-        ;; that describes the syntactical bits you want AutoComplete
-        ;; to be aware of. The cdr of each cell is the source that will
-        ;; supply the completion data.  The following tells autocomplete
-        ;; to begin completion when you type in a . or a ->
-
-        (add-to-list 'ac-omni-completion-sources
-                     (cons "\\." '(ac-source-semantic)))
-        (add-to-list 'ac-omni-completion-sources
-                     (cons "->" '(ac-source-semantic)))
-
-        ;; ac-sources was also made buffer local in new versions of
-        ;; autocomplete.  In my case, I want AutoComplete to use 
-        ;; semantic and yasnippet (order matters, if reversed snippets
-        ;; will appear before semantic tag completions).
-
-        (setq ac-sources '(ac-source-semantic ac-source-yasnippet))
-))
-
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 (setq TeX-auto-save t)                  ;自动保存
@@ -314,47 +280,6 @@
 
 (line-number-mode 1)
 (column-number-mode 1)
-
-(require 'package)
-(package-initialize)
-
-;; yasnippet code 'optional', before auto-complete
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;; auto-complete setup, sequence is important
-(require 'auto-complete)
-(add-to-list 'ac-modes 'latex-mode) ; beware of using 'LaTeX-mode instead
-(use-package ac-math
-  :ensure t)
-(require 'ac-math) ; package should be installed first 
-(defun my-ac-latex-mode () ; add ac-sources for latex
-   (setq ac-sources
-         (append '(ac-source-math-unicode
-           ac-source-math-latex
-           ac-source-latex-commands)
-                 ac-sources)))
-(add-hook 'LaTeX-mode-hook 'my-ac-latex-mode)
-(setq ac-math-unicode-in-math-p t)
-(ac-flyspell-workaround) ; fixes a known bug of delay due to flyspell (if it is there)
-(add-to-list 'ac-modes 'org-mode) ; auto-complete for org-mode (optional)
-(require 'auto-complete-config) ; should be after add-to-list 'ac-modes and hooks
-(ac-config-default)
-(setq ac-auto-start nil)            ; if t starts ac at startup automatically
-(setq ac-auto-show-menu t)
-(global-auto-complete-mode t) 
-
-(require 'ac-math) ; This is not needed when you install from MELPA
-
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
-
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-               ac-sources)))
-
-(add-hook 'TeX-mode-hook 'ac-latex-mode-setup)
-(setq ac-math-unicode-in-math-p t)
 
 (show-paren-mode 1)
 (electric-pair-mode 1)
